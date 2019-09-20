@@ -26,6 +26,7 @@ jobs:
           name: Run e2e tests
           command:  |
             npm run tsc
+            ./node_modules/protractor/bin/webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=74.0.3729.6"
             ./node_modules/protractor/bin/protractor protractor.conf.js
       - store_test_results:
           path : ~/protractor/Reports/e2e

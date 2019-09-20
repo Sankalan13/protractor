@@ -25,7 +25,7 @@ jobs:
             npm run pretest
             npm run test
       - store_test_results:
-        path : ~/protractor/Reports/e2e
+          path : ~/protractor/Reports/e2e
       - save_cache:
           key: dependency-cache--{{ checksum "package.json" }}
           paths:

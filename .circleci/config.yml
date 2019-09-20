@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/protractor
     docker:
-      - image: trion/ng-cli-e2e
+      - image: circleci/node:jessie-browsers
   # Specify service dependencies here if necessary
   # CircleCI maintains a library of pre-built images
   # documented at https://circleci.com/docs/2.0/circleci-images/

@@ -1,16 +1,33 @@
 jobs:
   build:
-    working_directory: ~/my-project
+    working_directory: ~/protractor
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:9.2-browsers
+  # Specify service dependencies here if necessary
+  # CircleCI maintains a library of pre-built images
+  # documented at https://circleci.com/docs/2.0/circleci-images/
+  # - image: circleci/mongo:3.4.4
+
     steps:
       - checkout
       - restore_cache:
-          key: AngularCircleCI-{{ .Branch }}-{{ checksum "package.json" }}
-      - run: npm install
+          key: dependency-cache--{{ checksum "package.json" }}
+      - run: 
+          name: install
+          command: npm install
+      - save_cache: 
+          key: dependency-cache--{{ checksum "package.json" }}
+          path: 
+            - ./node_modules
+      - run:
+          name: Run e2e tests
+          command:  |
+            npm run pretest
+            npm run test
+      - store_test_results:
+        path : ~/protractor/Reports/e2e
       - save_cache:
-          key: AngularCircleCI-{{ .Branch }}-{{ checksum "package.json" }}
+          key: dependency-cache--{{ checksum "package.json" }}
           paths:
             - "node_modules"
-      - run: xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
-      - run: xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
+

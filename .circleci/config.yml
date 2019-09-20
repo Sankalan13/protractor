@@ -1,3 +1,4 @@
+version: 2
 jobs:
   build:
     working_directory: ~/protractor
@@ -11,14 +12,16 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache--{{ checksum "package.json" }}
+          keys: 
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
       - run: 
-          name: install
+          name: Install local dependencies
           command: npm install
       - save_cache: 
-          key: dependency-cache--{{ checksum "package.json" }}
-          path: 
-            - "./node_modules"
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths: 
+            - node_modules
       - run:
           name: Run e2e tests
           command:  |
@@ -30,4 +33,6 @@ jobs:
           key: dependency-cache--{{ checksum "package.json" }}
           paths:
             - "node_modules"
+      - store_artifacts:
+          path: ~/protractor/Reports
 

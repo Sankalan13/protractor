@@ -14,7 +14,7 @@ exports.config = {
     specs: [
       './src/specs/*.spec.js'
     ],
-    // directConnect: true,
+    directConnect: true,
     // seleniumAddress: 'http://localhost:4444/wd/hub',
   
     // You could set no globals to true to avoid jQuery '$' and protractor '$'
@@ -38,4 +38,4 @@ exports.config = {
     }  
 }
 
-// "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=76.0.3809.25"
+// "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=74.0.3729.157"

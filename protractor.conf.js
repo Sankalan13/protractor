@@ -1,11 +1,11 @@
 // var globals = require('protractor');
 var HtmlReporter = require('protractor-beautiful-reporter');
 exports.config = {
-  //creating config type object with following attributes
-    framework: 'jasmine', //bdd framework
-    capabilities: { //multi capabilities to run tests on multiple browser
+  
+    framework: 'jasmine',
+    capabilities: {
       browserName: 'chrome',
-      shardTestFiles: true, // every spec runs on individual browser intsance
+      shardTestFiles: true,
       maxInstances: 5,
       chromeOptions: {
         args: [ "--headless", "--disable-gpu" ]

@@ -8,7 +8,7 @@
     "pretest": "npm run tsc && npm run webdriver-update",
     "test": "./node_modules/protractor/bin/protractor protractor.conf.js",
     "tsc": "tsc",
-    "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=76.0.3809.25"
+    "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update"
   },
   "repository": {
     "type": "git",

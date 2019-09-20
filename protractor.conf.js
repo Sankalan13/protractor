@@ -5,8 +5,8 @@ exports.config = {
     framework: 'jasmine',
     capabilities: {
       browserName: 'chrome',
-      shardTestFiles: true,
-      maxInstances: 5,
+      // shardTestFiles: true,
+      // maxInstances: 5,
       chromeOptions: {
         args: [ "--headless", "--disable-gpu" ]
       }

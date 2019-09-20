@@ -25,7 +25,6 @@ jobs:
       - run:
           name: Run e2e tests
           command:  |
-            npm run pretest
             npm run test
       - store_test_results:
           path : ~/protractor/Reports/e2e

@@ -28,7 +28,7 @@ jobs:
             sudo -u root createuser -h localhost --superuser ubuntu &&
             sudo chown -R ubuntu /usr/local/lib/node_modules
             npm run tsc
-            npm install -g protractor
+            sudo npm install -g protractor
             webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=74.0.3729.6
             protractor protractor.conf.js
       - store_test_results:

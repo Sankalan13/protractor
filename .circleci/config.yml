@@ -36,20 +36,20 @@ jobs:
     working_directory: ~/lighthouse
     docker:
       - image: kporras07/lighthouse-ci
-      steps:
-        - restore_cache:
+    steps:
+      - restore_cache:
           keys: 
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-        -run:
+      - run:
           name: Install lighthouse globally
           command: npm install -g lighthouse
-        -run:
+      - run:
           name: Run lighthouse
           environment:
             TEST_URL: http://www.angularjs.org
           command: lighthouse --chrome-flags="--headless --no-sandbox" $LIGHTHOUSE_TEST_URL --output html --output-path ./report.html
-        - store_artifacts:
+      - store_artifacts:
           path: ./report.html
 
 

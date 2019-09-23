@@ -33,13 +33,14 @@ jobs:
           path: ~/protractor/Reports
 
   deploy:
-    working_directory: ~/lighthouse
+    working_directory: ~/protractor
     docker:
       - image: kporras07/lighthouse-ci
     steps:
-      - run:
-          name: Install lighthouse globally
-          command: sudo npm install -g lighthouse
+      - checkout
+      - restore_cache:
+          keys: 
+          - v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Run lighthouse
           environment:

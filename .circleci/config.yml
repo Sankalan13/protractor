@@ -39,7 +39,7 @@ jobs:
     steps:
       - run:
           name: Install lighthouse globally
-          command: npm install -g lighthouse
+          command: sudo npm install -g lighthouse
       - run:
           name: Run lighthouse
           environment:

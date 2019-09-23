@@ -39,3 +39,11 @@ exports.config = {
 }
 
 // "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=74.0.3729.157"
+// - run:
+//           name: Install Docker Compose
+//           command: |
+//             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+//             chmod +x ~/docker-compose
+//             sudo mv ~/docker-compose /usr/local/bin/docker-compose
+//       - setup_remote_docker:
+//           docker_layer_caching: true

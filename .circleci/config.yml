@@ -35,11 +35,7 @@ jobs:
           command: |
             set -x
             docker-compose up -d
-            # docker-compose will start 2 containers, the one with service will be named `seleniumhub`
-            # we start another container with curl in the same network as `selenium hub`, this way we have
-            # all exposed ports from `chromenodes` available on `localhost` in this new container
-            docker run --network container:seleniumhub \
-              appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:4444/wd/hub
+          background: true
       - run:
           name: Run e2e tests
           command:  |

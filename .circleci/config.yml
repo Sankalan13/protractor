@@ -46,7 +46,7 @@ jobs:
           name: Run lighthouse
           environment:
             TEST_URL: http://www.angularjs.org
-          command: lighthouse --chrome-flags="--headless --no-sandbox" $LIGHTHOUSE_TEST_URL --output html --output-path ./report.html
+          command: lighthouse --chrome-flags="--headless --no-sandbox" $TEST_URL --output html --output-path ./report.html
       - store_artifacts:
           path: ./report.html
 

@@ -39,9 +39,9 @@ jobs:
       - image: kporras07/lighthouse-ci
     steps:
       - checkout
-      - restore_cache:
-          keys: 
-          - v1-dependencies-{{ checksum "package.json" }}
+      - run: 
+          name: Install local dependencies
+          command: npm install
       - run:
           name: Run lighthouse
           environment:

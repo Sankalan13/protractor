@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/protractor
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node:10-browsers
   # Specify service dependencies here if necessary
   # CircleCI maintains a library of pre-built images
   # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -22,6 +22,24 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
           paths: 
             - node_modules
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Start container and verify it's working
+          command: |
+            set -x
+            docker-compose up -d
+            # docker-compose will start 2 containers, the one with service will be named `seleniumhub`
+            # we start another container with curl in the same network as `selenium hub`, this way we have
+            # all exposed ports from `chromenodes` available on `localhost` in this new container
+            docker run --network container:seleniumhub \
+              appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:4444/wd/hub
       - run:
           name: Run e2e tests
           command:  |

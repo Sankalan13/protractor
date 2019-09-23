@@ -52,4 +52,12 @@ jobs:
       - store_artifacts:
           path: ./report.html
 
+workflows:
+  version: 2
+  protractorAndLighthouseTests:
+    jobs:
+      - test:
+      - deploy:
+          requires: 
+            - test
 

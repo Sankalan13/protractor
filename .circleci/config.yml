@@ -1,13 +1,9 @@
 version: 2
 jobs:
-  build:
+  test:
     working_directory: ~/protractor
     docker:
       - image: circleci/node:10-browsers
-  # Specify service dependencies here if necessary
-  # CircleCI maintains a library of pre-built images
-  # documented at https://circleci.com/docs/2.0/circleci-images/
-  # - image: circleci/mongo:3.4.4
 
     steps:
       - checkout
@@ -25,9 +21,8 @@ jobs:
       - run:
           name: Run e2e tests
           command:  |
-            npm run tsc
-            ./node_modules/protractor/bin/webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=76.0.3809.68
-            ./node_modules/protractor/bin/protractor protractor.conf.js
+            npm run pretest
+            npm run test
       - store_test_results:
           path : ~/protractor/Reports/e2e
       - save_cache:
@@ -36,4 +31,25 @@ jobs:
             - "node_modules"
       - store_artifacts:
           path: ~/protractor/Reports
+
+  deploy:
+    working_directory: ~/lighthouse
+    docker:
+      - image: kporras07/lighthouse-ci
+      steps:
+        - restore_cache:
+          keys: 
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+        -run:
+          name: Install lighthouse globally
+          command: npm install -g lighthouse
+        -run:
+          name: Run lighthouse
+          environment:
+            TEST_URL: http://www.angularjs.org
+          command: lighthouse --chrome-flags="--headless --no-sandbox" $LIGHTHOUSE_TEST_URL --output html --output-path ./report.html
+        - store_artifacts:
+          path: ./report.html
+
 

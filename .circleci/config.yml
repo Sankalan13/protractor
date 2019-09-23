@@ -35,6 +35,8 @@ jobs:
           command: |
             set -x
             docker-compose up -d
+            docker run --network container:protractor_seleniumhub_1 \
+              appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:4444/wd/hub
           background: true
       - run:
           name: Run e2e tests

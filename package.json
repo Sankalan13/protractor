@@ -8,7 +8,8 @@
     "pretest": "npm run tsc && npm run webdriver-update",
     "test": "./node_modules/protractor/bin/protractor protractor.conf.js",
     "tsc": "tsc",
-    "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=76.0.3809.68"
+    "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=76.0.3809.68",
+    "lighthouse": "./node_modules/jest/bin/jest.js --verbose -t=lighthouse"
   },
   "repository": {
     "type": "git",
@@ -25,13 +26,15 @@
     "@types/jasminewd2": "^2.0.6",
     "@types/node": "^12.7.5",
     "jasmine": "^3.3.1",
-    "lighthouse": "^5.4.0",
+    "lighthouse": "^4.0.0-beta",
     "protractor": "^5.4.2",
     "protractor-beautiful-reporter": "^1.3.3",
     "ts-node": "^8.0.3",
     "typescript": "^3.4.1"
   },
   "devDependencies": {
-    "@types/selenium-webdriver": "^4.0.0"
+    "@types/selenium-webdriver": "^4.0.0",
+    "jest": "^23.4.1",
+    "puppeteer": "^1.6.0"
   }
 }

@@ -23,8 +23,8 @@ describe('Google Lighthouse audit tests', async () => {
         const url = 'https://red-badger.com';
         // kick off a Lighthouse audit on the above url
         lhr = await commonMethods.lighthouseAudit(browser, url);
-        await commonMethods.writeToFile(lhr);
-        console.log("we are here now!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        await commonMethods.writeToFileHTML(lhr);
+        await commonMethods.writeToFileCSV(lhr);
     });
 
     // General accessibility overview score

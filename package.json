@@ -9,7 +9,8 @@
     "test": "./node_modules/protractor/bin/protractor protractor.conf.js",
     "tsc": "tsc",
     "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update --standalone --versions.standalone=3.8.0 --chrome --versions.chrome=76.0.3809.68",
-    "lighthouse": "./node_modules/jest/bin/jest.js --verbose -t=lighthouse"
+    "lighthouse": "./node_modules/jest/bin/jest.js --verbose -t=lighthouse",
+    "lighthouse-reports": "./node_modules/jest/bin/jest.js --verbose -t=lighthouse && sh ./lighthouse/saveReports.sh"
   },
   "repository": {
     "type": "git",

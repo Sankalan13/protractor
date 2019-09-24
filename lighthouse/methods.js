@@ -38,7 +38,6 @@ module.exports = {
             .set(null, 'Pass');
 
         let result = await score.get(propertyType.get(property));
-        console.log(propertyType);
         return result;
     },
 
@@ -53,14 +52,17 @@ module.exports = {
 
 
         let result = await jsonProperty.get(property);
-        console.log(jsonProperty);
         return result
     },
 
-    async writeToFile(lhr) {
-        var fs = require('fs');
+    async writeToFileHTML(lhr) {
         const html = ReportGenerator.generateReportHtml(lhr.lhr);
         await write(html, 'html', 'report.html');
+    },
+
+    async writeToFileCSV(lhr) {
+        const csv = ReportGenerator.generateReportCSV(lhr.lhr);
+        await write(csv, 'csv', 'report.csv');
     }
 
 

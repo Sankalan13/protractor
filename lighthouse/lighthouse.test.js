@@ -38,7 +38,7 @@ describe('Google Lighthouse audit tests', async () => {
     it('passes a performance audit through Lighthouse', async () => {
         const performanceScore = await commonMethods.getLighthouseResult(lhr, 'performance');
         // Tester can set their own thresholds for pass marks
-        expect(performanceScore).toBeGreaterThan(20);
+        expect(performanceScore).toBeGreaterThan(5);
     });
 
     // General best practice for websites overview score

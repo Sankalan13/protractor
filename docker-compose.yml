@@ -1,11 +1,14 @@
-seleniumhub:
-  image: selenium/hub:2.53.0
-  ports:
-    - 4444:4444
+services:
+  protractor:
+    build: .
+  seleniumhub:
+    image: selenium/hub:2.53.0
+    ports:
+      - 4444:4444
 
-chromenode:
-  image: selenium/node-chrome:2.53.0
-  ports:
-    - 5900
-  links:
-    - seleniumhub:hub
+  chromenode:
+    image: selenium/node-chrome:2.53.0
+    ports:
+      - 5900
+    links:
+      - seleniumhub:hub

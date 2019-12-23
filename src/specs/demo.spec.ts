@@ -2,7 +2,7 @@ import {browser, element, by, By, $, $$, ExpectedConditions} from 'protractor';
 
 describe('protractor with typescript typings', () => {
   beforeEach(async () => {
-    await browser.get('http://www.angularjs.org');
+    await browser.get(browser.baseUrl);
   });
 
   it('should greet the named user', async () => {
